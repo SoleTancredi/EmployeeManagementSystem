@@ -3,6 +3,7 @@ package com.projectmanagement.dao;
 import com.projectmanagement.db.DBconnection;
 import com.projectmanagement.model.Employee;
 
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,6 @@ public class EmployeeDao implements EmployeeDaoInterface{
     @Override
     public boolean addEmployee(Employee e) {
         boolean flag = false;
-
         try{
             Connection connection = DBconnection.createConnection();
             String query = "insert into employee_details(sname, lastname, age, salary) value(?,?,?,?)";
@@ -33,7 +33,18 @@ public class EmployeeDao implements EmployeeDaoInterface{
 
     @Override
     public boolean delete(int id) {
-        return false;
+        boolean flag = false;
+        try{
+            Connection connection = DBconnection.createConnection();
+            String query = "delete from employee_details where id="+id;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            flag=true;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return flag;
     }
 
     @Override
@@ -58,7 +69,6 @@ public class EmployeeDao implements EmployeeDaoInterface{
                         "Salary: " + resultSet.getDouble(5));
                 System.out.println("--------------------------------------------------------");
             }
-
         }catch(Exception ex){
             ex.printStackTrace();
         }

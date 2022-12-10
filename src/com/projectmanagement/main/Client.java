@@ -28,7 +28,7 @@ public class Client {
 
             switch (ch){
                 case 1:
-                    System.out.println("Add an Employee.");
+                    System.out.println("<<< Add an Employee >>>");
                     System.out.println("Enter name: ");
                     String name = sc.next();
                     System.out.println("Enter last name: ");
@@ -41,27 +41,37 @@ public class Client {
                     boolean answerDao = dao.addEmployee(e);
 
                     if(!answerDao){
-                        System.out.println("Something went wrong! Please try again!");
+                        System.out.println(" -> Something went wrong! Please try again!");
                     }
 
-                    System.out.println("Employee inserted successfully!!");
+                    System.out.println(" -> Employee inserted successfully!!");
                     break;
                 case 2:
-                    System.out.println("List of Employees");
+                    System.out.println("<<< List of Employees >>>");
                     dao.showAllEmployee();
                     break;
                 case 3:
+                    System.out.println("<<< Find by Id >>>");
                     System.out.println("Enter Employee ID:");
-                    int id = sc.nextInt();
-                    boolean findId = dao.showEmployeeById(id);
+                    int idFind = sc.nextInt();
+                    boolean findId = dao.showEmployeeById(idFind);
                     if(!findId){
-                        System.out.println("The id it doesn´t exist.");
+                        System.out.println(" -> The id it doesn´t exist.");
                     }
                     break;
                 case 4:
-                    System.out.println("delete");
+                    System.out.println("<<< Delete >>>");
+                    System.out.println("Enter Employee ID: ");
+                    int idDelete = sc.nextInt();
+                    boolean deleteId = dao.delete(idDelete);
+                    if(!deleteId){
+                        System.out.println(" -> The id it doesn´t exist. ");
+                    }else{
+                        System.out.println(" -> Employee delete successfully!");
+                    }
                     break;
                 case 5:
+                    System.out.println("<<< Update >>>");
                     System.out.println("update");
                     break;
                 case 6:
