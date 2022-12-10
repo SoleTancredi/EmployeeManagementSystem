@@ -1,11 +1,16 @@
 package com.projectmanagement.main;
 
+import com.projectmanagement.dao.EmployeeDao;
+import com.projectmanagement.dao.EmployeeDaoInterface;
+import com.projectmanagement.model.Employee;
+
 import java.util.Scanner;
 
 public class Client {
 
     public static void main(String[] args){
 
+        EmployeeDaoInterface dao = new EmployeeDao();
         //Scanner -> allows to obtain primitive data input.
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Employee Management Application");
@@ -23,7 +28,24 @@ public class Client {
 
             switch (ch){
                 case 1:
-                    System.out.println("add employee");
+                    System.out.println("Add an Employee.");
+                    System.out.println("Enter name: ");
+                    String name = sc.next();
+                    System.out.println("Enter last name: ");
+                    String lastName = sc.next();
+                    System.out.println("Enter age: ");
+                    int age = sc.nextInt();
+                    System.out.println("Enter salary: ");
+                    double salary = sc.nextDouble();
+                    Employee e = new Employee(name, lastName, age, salary);
+                    boolean answerDao = dao.addEmployee(e);
+
+                    if(!answerDao){
+                        System.out.println("Something went wrong! Please try again!");
+                    }
+
+                    System.out.println("Employee inserted successfully!!");
+
                     break;
                 case 2:
                     System.out.println("show all");

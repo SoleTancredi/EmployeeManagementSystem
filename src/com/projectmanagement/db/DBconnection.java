@@ -11,7 +11,7 @@ public class DBconnection {
     public static Connection createConnection(){
         try{
             //loads a class in the Java Virtual Machine (JVM) that is running based on the serial name passed in the method.
-            Class.forName("com.mysql.jdbc.Driver"); //
+           //Class.forName("com.mysql.jdbc.Driver"); //deprecated
             String user = "root";
             String pass = "BastaPopi$123";
             String url = "jdbc:mysql://localhost:3306/employee?autoReconnect=true&useSSL=false";
