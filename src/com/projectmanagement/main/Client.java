@@ -45,10 +45,10 @@ public class Client {
                     }
 
                     System.out.println("Employee inserted successfully!!");
-
                     break;
                 case 2:
                     System.out.println("show all");
+                    dao.showAllEmployee();
                     break;
                 case 3:
                     System.out.println("get emp by id");
