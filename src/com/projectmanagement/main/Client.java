@@ -47,11 +47,16 @@ public class Client {
                     System.out.println("Employee inserted successfully!!");
                     break;
                 case 2:
-                    System.out.println("show all");
+                    System.out.println("List of Employees");
                     dao.showAllEmployee();
                     break;
                 case 3:
-                    System.out.println("get emp by id");
+                    System.out.println("Enter Employee ID:");
+                    int id = sc.nextInt();
+                    boolean findId = dao.showEmployeeById(id);
+                    if(!findId){
+                        System.out.println("The id it doesn´t exist.");
+                    }
                     break;
                 case 4:
                     System.out.println("delete");

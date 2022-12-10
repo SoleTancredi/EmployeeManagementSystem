@@ -66,6 +66,24 @@ public class EmployeeDao implements EmployeeDaoInterface{
 
     @Override
     public boolean showEmployeeById(int id) {
-        return false;
+        boolean flag = false;
+        try{
+            Connection connection = DBconnection.createConnection();
+            String query = "select * from employee_details where id="+id;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while(resultSet.next()){
+                System.out.println("ID: " + resultSet.getInt(1) +"\n" + "Name: " + resultSet.getString(2) + "\n" +
+                        "Last Name: " + resultSet.getString(3) + "\n" +
+                        "Age: " + resultSet.getInt(4) + "\n" +
+                        "Salary: " + resultSet.getDouble(5));
+                flag = true;
+            }
+
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+
+        return flag;
     }
 }
