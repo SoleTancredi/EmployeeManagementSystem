@@ -7,8 +7,7 @@ public class Employee {
     private int age;
     private double salary;
 
-    public Employee(int id, String name, String lastName, int age, double salary) {
-        this.id = id;
+    public Employee(String name, String lastName, int age, double salary) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -53,5 +52,16 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                '}';
     }
 }
