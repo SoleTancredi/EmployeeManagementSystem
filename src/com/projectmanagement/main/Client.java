@@ -72,7 +72,25 @@ public class Client {
                     break;
                 case 5:
                     System.out.println("<<< Update >>>");
-                    System.out.println("update");
+                    System.out.println("<<< Enter one option: >>>");
+                    System.out.println("\n1.Name\n2.Salary");
+                    int choiceUpdate = sc.nextInt();
+
+                        if(choiceUpdate == 1) {
+                            System.out.println("Enter Employee ID: ");
+                            int idUpdate = sc.nextInt();
+                            System.out.println("Enter new name: ");
+                            String sname = sc.next();
+                            Employee employee = new Employee();
+                            employee.setName(sname);
+                            boolean flag = dao.update(idUpdate, sname, choiceUpdate, employee);
+                            if (!flag) {
+                                System.out.println("Something went wrong, try again!");
+
+                            } else {
+                                System.out.println("Last name updated successfully!!");
+                            }
+                        }
                     break;
                 case 6:
                     System.out.println("exit");

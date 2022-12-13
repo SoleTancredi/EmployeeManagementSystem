@@ -4,10 +4,7 @@ import com.projectmanagement.db.DBconnection;
 import com.projectmanagement.model.Employee;
 
 import java.net.ConnectException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class EmployeeDao implements EmployeeDaoInterface{
 
@@ -49,7 +46,22 @@ public class EmployeeDao implements EmployeeDaoInterface{
 
     @Override
     public boolean update(int id, String update, int ch, Employee e) {
-        return false;
+        boolean flag = false;
+        try{
+            if(ch==1){
+                Connection connection = DBconnection.createConnection();
+                String query = "update employee_details set sname=? where id=?";
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, update); //parameters in the string of query
+                ps.setInt(2, id);
+                ps.executeUpdate();
+                flag=true;
+
+            }
+        }catch(Exception ex) {
+            ex.printStackTrace();
+        }
+        return flag;
     }
 
     @Override
